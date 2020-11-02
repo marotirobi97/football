@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Player</title>
+    <style>
+         table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 25%;
+            text-align:center;
+            height:25px;
+           }
+    </style>
+</head>
+<body>
+<button onclick="history.back(-1)">Vissza</button>
+<table>
+    <thead>
+    <tr>
+        <th> ID </th>
+        <th> Name </th>
+        <th> Height </th>
+        <th> Nationality </th>
+        <th> Skill level </th>
+        <th> Dominant leg </th>
+        <th> Position </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="player : ${requestedPlayer}">
+        <td><span th:text="${player.id}" name="cubeId">ID</span></td>
+        <td><span th:text="${player.name}"> Name </span></td>
+        <td><span th:text="${player.height}"> Height </span></td>
+        <td><span th:text="${player.nationality}"> Nationality </span></td>
+        <td><span th:text="${player.skillLevel}">  Skill level  </span></td>
+        <td><span th:text="${player.dominantLeg}"> Dominant leg </span></td>
+        <td><span th:text="${player.positions}">Position</span></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

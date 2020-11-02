@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html xmlns:th="https://www.thymeleaf.org"><head>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id ="div" th:fragment="form">
+<h1 style="text-align:center">Add Player</h1>
+    <form action="#" th:action="@{/addPlayer}" th:object="${playerDto}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <label for="name">Name:</label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Name">
+
+        <label for="height">Height:</label>
+        <input type="text" th:field="*{height}" id="height" placeholder="Height">
+
+        <label for="nationality">Nationality:</label>
+        <select th:field="*{nationality}">
+        <option th:each="nationalityOpt : ${T(com.example.football.enums.Nationality).values()}"
+                th:value="${nationalityOpt}" th:text="${nationalityOpt.nationality}"></option>
+        </select>
+
+        <label for="skillLevel">Skill Level:</label>
+        <input type="text" th:field="*{skillLevel}" id="skillLevel" placeholder="Skill Level">
+
+        <label for="dominantLeg">Dominant Leg:</label>
+        <select th:field="*{dominantLeg}">
+            <option th:each="dominantLegOpt : ${T(com.example.football.enums.DominantLeg).values()}"
+                    th:value="${dominantLegOpt}" th:text="${dominantLegOpt.dominantLeg}"></option>
+        </select>
+
+
+        <label for="positions">Position:</label>
+        <select th:field="*{positions}">
+            <option th:each="positionOpt : ${T(com.example.football.enums.Positions).values()}"
+                    th:value="${positionOpt}" th:text="${positionOpt.position}"></option>
+        </select>
+
+        <input type="submit" value="Add new Player to the Team">
+        <div id="createPlayerError" role="alert" th:text="${createPlayerError}" th:if="${createPlayerError}"></div>
+    </form>
+</div>
+</body>
+</html>

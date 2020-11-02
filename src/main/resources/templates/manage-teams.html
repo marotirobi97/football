@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Teams</title>
+    <style>
+         table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align:center;
+            height:25px;
+           }
+            table{
+            width:20%;
+            }
+    </style>
+</head>
+<body>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th> ID </th>
+            <th> Name </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(players)}">
+            <td colspan="2"> No player available</td>
+        </tr>
+        <tr th:each="player : ${players}">
+            <td><a th:href="@{/requestedPlayer/{playerId}(playerId=${player.id})}"><span th:text="${player.id}">ID</span></a></td>
+            <td><span th:text="${player.name}">Name </span></td>
+            <td><a th:href="@{/playerToTeam/{playerId}(playerId=${player.id})}"><span th:value="${player.id}">Select player</span></a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="selectErrorMessage" role="alert" th:text="${selectErrorMessage}" th:if="${selectErrorMessage}"></div>
+</div><br><br>
+    <form action="#" th:action="@{/team/create}" th:object="${teamDto}" method="post">
+        <h3>Build Team</h3>
+        <div id="selectPlayerDiv">
+            <input type="text" placeholder="Name of the Team">
+            <table>
+                <thead>
+                <tr>
+                    <th> Player's Name </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${#lists.isEmpty(selectedPlayerList)}">
+                    <td colspan="2"> No player selected yet</td>
+                </tr>
+                <tr th:each="player : ${selectedPlayerList}">
+                    <td><span th:text="${player.name}">Name </span></td>
+                    <td><a th:href="@{/delete/{playerId}(playerId=${player.id})}" >Delete </a></td>
+                </tr>
+                </tbody>
+                <input type="submit" value="Create Team">
+            </table>
+        </div>
+    </form>
+</body>
+</html>
