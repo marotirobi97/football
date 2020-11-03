@@ -1,13 +1,16 @@
-package com.example.football;
+package com.example.football.entity;
 import com.example.football.enums.Nationality;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Team {
@@ -19,8 +22,8 @@ public class Team {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "address")
+    private String address;
 
     @Column(name = "nationality")
     @Enumerated(EnumType.STRING)
@@ -32,4 +35,6 @@ public class Team {
     @Column(name = "number_of_victories")
     private Integer numberOfVictories;
 
+    @OneToMany(mappedBy = "team")
+    private List<Player> playerList;
 }

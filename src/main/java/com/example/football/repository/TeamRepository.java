@@ -1,6 +1,6 @@
 package com.example.football.repository;
 
-import com.example.football.Team;
+import com.example.football.entity.Team;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -11,10 +11,10 @@
     <form action="#" th:action="@{/addPlayer}" th:object="${playerDto}" method="post">
         <input type="hidden" th:field="*{id}">
         <label for="name">Name:</label>
-        <input type="text" th:field="*{name}" id="name" placeholder="Name">
+        <input type="text" th:field="*{name}" id="name" placeholder="Name" required>
 
         <label for="height">Height:</label>
-        <input type="text" th:field="*{height}" id="height" placeholder="Height">
+        <input type="text" th:field="*{height}" id="height" placeholder="Height" required>
 
         <label for="nationality">Nationality:</label>
         <select th:field="*{nationality}">
@@ -23,7 +23,7 @@
         </select>
 
         <label for="skillLevel">Skill Level:</label>
-        <input type="text" th:field="*{skillLevel}" id="skillLevel" placeholder="Skill Level">
+        <input type="text" th:field="*{skillLevel}" id="skillLevel" placeholder="Skill Level" required>
 
         <label for="dominantLeg">Dominant Leg:</label>
         <select th:field="*{dominantLeg}">

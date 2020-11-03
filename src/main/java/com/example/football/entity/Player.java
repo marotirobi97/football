@@ -1,4 +1,4 @@
-package com.example.football;
+package com.example.football.entity;
 
 import com.example.football.enums.DominantLeg;
 import com.example.football.enums.Nationality;
@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Data
@@ -40,8 +41,11 @@ public class Player {
     @Enumerated(EnumType.STRING)
     private DominantLeg dominantLeg;
 
-     @Column(name = "positions")
-     @Enumerated(EnumType.STRING)
-     private Positions positions;
+    @Column(name = "positions")
+    @Enumerated(EnumType.STRING)
+    private Positions positions;
 
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
 }

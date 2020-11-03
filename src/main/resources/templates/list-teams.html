@@ -2,14 +2,28 @@
 <!--suppress ALL -->
 <html xmlns:th="https://www.thymeleaf.org"><head>
     <meta charset="UTF-8">
+    <Title>List teams</Title>
+    <style>
+         table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align:center;
+            height:25px;
+           }
+            table{
+            width:40%;
+            }
+    </style>
 </head>
 <body>
+<button onclick="window.location.href='/index'">Vissza</button>
 <table th:fragment="teamListFragment">
     <h3>Teams</h3>
     <thead>
     <tr>
+        <th> ID </th>
         <th> Name </th>
-        <th> Title </th>
+        <th> Address </th>
         <th> Nationality </th>
         <th> Number of Players </th>
         <th> Number of Victories </th>
@@ -20,8 +34,9 @@
         <td colspan="5"> No Team haven been made.</td>
     </tr>
     <tr th:each="team : ${teams}">
+        <td><span th:text="${team.id}" name="name">ID</span></td>
         <td><span th:text="${team.name}" name="name">Name</span></td>
-        <td><span th:text="${team.title}">Title </span></td>
+        <td><span th:text="${team.address}">Address </span></td>
         <td><span th:text="${team.nationality}">Nationality </span></td>
         <td><span th:text="${team.numberOfPlayers}">Number of Players </span></td>
         <td><span th:text="${team.numberOfVictories}">Number of Victories </span></td>

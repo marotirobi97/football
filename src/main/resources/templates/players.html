@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-
+<button onclick="window.location.href='/index'">Vissza</button>
 <div th:replace="add-player :: form "> </div>
 <br><br>
 <div id="playerField">
@@ -26,7 +26,9 @@
         <thead>
         <tr>
             <th> ID </th>
+            <th> Nationality </th>
             <th> Name </th>
+            <th> Position </th>
         </tr>
         </thead>
         <tbody>
@@ -35,7 +37,9 @@
         </tr>
         <tr th:each="player : ${players}">
             <td><a th:href="@{/requestedPlayer/{playerId}(playerId=${player.id})}"><span th:text="${player.id}">ID</span></a></td>
+            <td><span th:text="${player.nationality.getNationality()}">Nationality </span></td>
             <td><span th:text="${player.name}">Name </span></td>
+            <td><span th:text="${player.positions}">Position </span></td>
 
         </tr>
         </tbody>

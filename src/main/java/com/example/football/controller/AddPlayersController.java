@@ -1,8 +1,7 @@
 package com.example.football.controller;
 
-import com.example.football.Player;
+import com.example.football.entity.Player;
 import com.example.football.dto.PlayerDto;
-import com.example.football.enums.Nationality;
 import com.example.football.repository.PlayerRepository;
 import com.example.football.repository.TeamRepository;
 import lombok.Builder;
@@ -51,13 +50,6 @@ public class AddPlayersController {
         model.addAttribute("players",playerRepository.findAll());
         return "players";
     }
-
-//    @GetMapping("/list")
-//    public String ListTeams(Model model, @ModelAttribute("teams") Team team){
-//        model.addAttribute("teams", teamRepository.findAll());
-//        model.addAttribute("team", team);
-//        return "redirect:/playerAndTeam";
-//    }
 
     @GetMapping("/requestedPlayer/{playerId}")
     public String requestedPlayer(Model model, @PathVariable("playerId") int playerId){

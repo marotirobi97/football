@@ -1,6 +1,6 @@
 package com.example.football.dto;
 
-import com.example.football.Player;
+import com.example.football.entity.Player;
 import com.example.football.enums.Nationality;
 import lombok.Data;
 
@@ -12,7 +12,7 @@ public class TeamDto {
 
     private Integer id;
     private String name;
-    private String title;
+    private String address;
     private Nationality nationality;
     private Integer numberOfPlayers;
     private Integer numberOfVictories;
