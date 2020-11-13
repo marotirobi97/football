@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <!--suppress ALL -->
-<html xmlns:th="https://www.thymeleaf.org"><head>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        input{
+            background: #F3F3F3 !important;
+            width:150px !important;
+            height:30px !important;
+            border-radius: 8px !important;
+        }
+    </style>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 <div id ="div" th:fragment="form">
@@ -11,10 +20,10 @@
     <form action="#" th:action="@{/addPlayer}" th:object="${playerDto}" method="post">
         <input type="hidden" th:field="*{id}">
         <label for="name">Name:</label>
-        <input type="text" th:field="*{name}" id="name" placeholder="Name" required>
+        <input type="text" th:field="*{name}" id="name" placeholder="Name" required class="w3-input">
 
         <label for="height">Height:</label>
-        <input type="text" th:field="*{height}" id="height" placeholder="Height" required>
+        <input type="text" th:field="*{height}" id="height" placeholder="Height" required class="w3-input">
 
         <label for="nationality">Nationality:</label>
         <select th:field="*{nationality}">
@@ -23,7 +32,7 @@
         </select>
 
         <label for="skillLevel">Skill Level:</label>
-        <input type="text" th:field="*{skillLevel}" id="skillLevel" placeholder="Skill Level" required>
+        <input type="text" th:field="*{skillLevel}" id="skillLevel" placeholder="Skill Level" required class="w3-input">
 
         <label for="dominantLeg">Dominant Leg:</label>
         <select th:field="*{dominantLeg}">
@@ -38,7 +47,7 @@
                     th:value="${positionOpt}" th:text="${positionOpt.position}"></option>
         </select>
 
-        <input type="submit" value="Add new Player to the Team">
+        <input type="submit" value="Add new Player to the Team" class="w3-input">
         <div id="createPlayerError" role="alert" th:text="${createPlayerError}" th:if="${createPlayerError}"></div>
     </form>
 </div>

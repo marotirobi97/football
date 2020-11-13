@@ -48,4 +48,12 @@ public class Player {
     @ManyToOne
     @JoinColumn(name = "team_id")
     private Team team;
+
+    public void addSkillLevel(Integer skillLevel) {
+        this.skillLevel += skillLevel;
+    }
+
+    public void subtractSkillLevel(Integer skillLevel) {
+        this.skillLevel -= skillLevel;
+    }
 }

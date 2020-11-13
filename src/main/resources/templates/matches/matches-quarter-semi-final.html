@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html xmlns:th="https://www.thymeleaf.org"><head>
+<head>
+    <meta charset="UTF-8">
+    <title>QuarterFinal</title>
+    <style>
+        .won{
+            background-color:lightgreen;
+        }
+        .lost{
+            background-color:#ff8080;
+        }
+
+        table{
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            text-align:center;
+        }
+        thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+        th,td{
+            padding: 12px 15px;
+        }
+
+        a {
+            display: block;
+            width: 115px;
+            height: 25px;
+            background: #4E9CAF;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            line-height: 25px;
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tbody>
+        <div th:each=" result : ${results}">
+            <input type="text" th:value="${result.victoryTeam.getName()}"  class="won">
+            <span th:text="  vs  "></span>
+            <input type="text" th:value="${result.lostTeam.getName()}" class="lost">
+        </div>
+    </tbody>
+    <br>
+    <a th:href="@{/generate/match/{championshipId}(championshipId=${championshipId})}" id="beforeFinal" role="alert" th:text="${beforeFinal}" th:if="${beforeFinal}" ></a>
+    <a id="Done" role="alert" th:text="${Done}" th:if="${Done}" th:href="@{/list/championships}" ></a>
+    <br>
+</table>
+<br>
+<table>
+    <thead>
+    <tr>
+        <th> TeamA name </th>
+        <th> TeamB name </th>
+        <th> TeamA Chance </th>
+        <th> TeamB Chance </th>
+        <th> TeamA Random number </th>
+        <th> TeamB Random number </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each=" match : ${results}">
+        <td><span th:text="${match.teamA.getName()}">Name</span></td>
+        <td><span th:text="${match.teamB.getName()}">Name</span></td>
+        <td><span th:text="${match.teamAChance}">Chance </span></td>
+        <td><span th:text="${match.teamBChance}">Chance </span></td>
+        <td><span th:text="${match.teamARndNumber}">Random number </span></td>
+        <td><span th:text="${match.teamBRndNumber}">Random number </span></td>
+    </tr>
+    </tbody>
+</table><br>
+</body>
+</html>

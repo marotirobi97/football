@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Match</title>
+    <style>
+         table{
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            text-align:center;
+        }
+        thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+        td{
+            padding: 12px 15px;
+            border: 1px solid black;
+        }
+
+         a {
+            display: block;
+            width: 115px;
+            height: 25px;
+            background: #4E9CAF;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            line-height: 25px;
+            text-decoration:none;
+        }
+
+       button {
+        color: #444444;
+        background: #F3F3F3;
+        border: 1px #DADADA solid;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 12pt;
+        outline: none;
+        width:120px;
+        height:40px;
+        margin:10px;
+
+        color: white;
+        background: #4C8FFB;
+        border: 1px #3079ED solid;
+        box-shadow: inset 0 1px 0 #80B0FB;
+    }
+    </style>
+</head>
+<body>
+<button onclick="window.location.href='/index'">Vissza</button><br>
+<h3>Championships</h3>
+<table>
+<tbody>
+<tr th:each="championship : ${championships}">
+    <td><span style="font-weight:bold; font-size:22;" th:text="${championship.name}">Name</span></td>
+    <td><a th:href="@{/list/match/{championshipId}(championshipId=${championship.id})}"><span th:text="Play">Play</span></a></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

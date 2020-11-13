@@ -46,7 +46,7 @@ public class MangeTeamsController {
         playerList = playerRepository.findAllPlayerWhoIsNotInATeam();
         model.addAttribute("players", playerList);
         model.addAttribute("selectedPlayerList", teamDto.getPlayerList());
-        return "manage-teams";
+        return "team/manage-teams";
     }
 
     @GetMapping("/playerToTeam/{playerId}")
@@ -81,8 +81,8 @@ public class MangeTeamsController {
     }
 
     @GetMapping("/list/teams")
-    public String ListTeams(Model model, @ModelAttribute("teams") Team team){
+    public String listTeams(Model model, @ModelAttribute("teams") Team team){
         model.addAttribute("teams", teamRepository.findAll());
-        return "list-teams";
+        return "team/list-teams";
     }
 }

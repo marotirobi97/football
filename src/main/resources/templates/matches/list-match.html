@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html xmlns:th="https://www.thymeleaf.org"><head>
+<head>
+    <meta charset="UTF-8">
+    <title>Match</title>
+    <style>
+          table{
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            text-align:center;
+        }
+
+        a {
+            display: block;
+            width: 115px;
+            height: 25px;
+            background: #4E9CAF;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            line-height: 25px;
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+<h3 th:text="${currentRound}"></h3>
+<table>
+    <tbody>
+    <div th:each=" match : ${matches}">
+        <br>
+        <input type="text" th:value="${match.teamA.getName()}">
+        <span th:text="  vs  " strong></span>
+        <input type="text" th:value="${match.teamB.getName()}">
+    </div>
+    </tbody>
+</table>
+<a th:href="@{/play/match/{championshipId}(championshipId=${championshipId})}">Play</a>
+</body>
+</html>

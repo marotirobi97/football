@@ -30,7 +30,7 @@ public class AddPlayersController {
     }
 
     @PostMapping("/addPlayer")
-    public String AddPlayer(@ModelAttribute PlayerDto playerDto, RedirectAttributes redirectAttributes){
+    public String addPlayer(@ModelAttribute PlayerDto playerDto, RedirectAttributes redirectAttributes){
         if(playerDto.getName().isEmpty() || playerDto.getHeight() == null || playerDto.getSkillLevel() == null){
             redirectAttributes.addFlashAttribute("createPlayerError", "Cannot create playerDto.");
             return "redirect:/playerAndTeam";
@@ -46,15 +46,15 @@ public class AddPlayersController {
     }
 
     @GetMapping("/players")
-    public String Players(Model model){
+    public String players(Model model){
         model.addAttribute("players",playerRepository.findAll());
-        return "players";
+        return "player/players";
     }
 
     @GetMapping("/requestedPlayer/{playerId}")
     public String requestedPlayer(Model model, @PathVariable("playerId") int playerId){
         Player player = playerRepository.findPlayer(playerId);
         model.addAttribute("requestedPlayer", player);
-        return "requested-player";
+        return "player/requested-player";
     }
 }

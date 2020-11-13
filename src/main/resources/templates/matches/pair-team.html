@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pair teams</title>
+    <style>
+         button {
+        color: #444444;
+        background: #F3F3F3;
+        border: 1px #DADADA solid;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 10pt;
+        outline: none;
+        width:100px;
+        height:28px;
+        margin:5px;
+
+        color: white;
+        background: #4C8FFB;
+        border: 1px #3079ED solid;
+        box-shadow: inset 0 1px 0 #80B0FB;
+    }
+    table{
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            text-align:center;
+        }
+        thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+        th,td{
+            padding: 12px 15px;
+            text-align:center;
+        }
+         a{
+            text-decoration:none;
+            color:black
+        }
+    </style>
+</head>
+<body>
+<button onclick="window.location.href='/index'">Vissza</button><br>
+<form action="#" th:action="@{/selected/team}" th:object="${team}" method="post">
+<table>
+    <thead>
+    <tr>
+        <th> ID </th>
+        <th> Name </th>
+        <th> Position </th>
+        <th> Select player </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="team : ${teams}">
+        <td><span th:text="${team.id}">ID</span></td>
+        <td><span th:text="${team.name}">Name </span></td>
+        <td><span th:text="${team.nationality.getNationality()}">Nationality </span></td>
+        <td><a th:href="@{/selected/team/{teamId}(teamId=${team.id})}"><span th:value="${team.id}">Select player</span></a></td>
+    </tr>
+    </tbody>
+</table>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th> Team's Name </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${#lists.isEmpty(selectedTeamList)}">
+        <td colspan="2"> No Team selected yet</td>
+    </tr>
+    <tr th:each="team : ${selectedTeamList}">
+        <td><span th:text="${team.name}">Name </span></td>
+<!--        <td><a th:href="@{/delete/{playerId}(playerId=${player.id})}" >Delete </a></td>-->
+    </tr>
+    </tbody>
+</table>
+
+<form action="#" th:action="@{/save}" th:object="${pairTeamsDto}" method="post">
+
+    <div th:each=" match : ${pairTeamsDto.matches}">
+        <br>
+        <input type="text" th:value="${match.teamA.getName()}">
+        <span th:text="  vs  "></span>
+        <input type="text" th:value="${match.teamB.getName()}">
+    </div><br>
+    <div id="EightTeamError" role="alert" th:text="${EightTeamError}" th:if="${EightTeamError}"></div>
+    <div id="SameTeam" role="alert" th:text="${SameTeam}" th:if="${SameTeam}"></div>
+    <input type="button" onclick="window.location.href='/select/team'" value="Pair all team for duel."><br>
+    <input type="submit" value="Save Match">
+</form>
+</body>
+</html>
