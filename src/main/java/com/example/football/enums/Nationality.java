@@ -1,8 +1,8 @@
 package com.example.football.enums;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 public enum Nationality {
     HUNGARIAN("Hungarian"),
     BRITISH("British"),
@@ -11,6 +11,10 @@ public enum Nationality {
     GERMAN("German");
 
     private final String nationality;
+
+    Nationality(String nationality) {
+        this.nationality = nationality;
+    }
 
     public String getNationality() {
         return nationality;
